@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="LOG_HOME" value="c:/Users/u6041989/springtest/" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread]%-5level %class{0} - %msg%n</pattern>
+		</encoder>
+		
+	</appender>
+	<appender name="logJsonProcessing" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		    <!-- daily rollover -->
+			<FileNamePattern>${LOG_HOME}\logJsonProcessing.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<maxHistory>30</maxHistory>			
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread]- %msg%n</pattern>
+		</encoder>
+	</appender>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="logJsonProcessing"/>
+	</root>
+	<logger name="fileLog1" level="error" additivity="false">
+		<appender-ref ref="logJsonProcessing" />
+	</logger>
+
+</configuration>
