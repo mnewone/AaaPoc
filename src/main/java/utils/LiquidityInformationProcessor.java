@@ -9,9 +9,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -131,13 +128,17 @@ List<String>>{
 		}
 		List<String> bcpRowList = new ArrayList<>();
 		for(String column:oneRow.keySet()) {
-			log.info("In processor print column name " + column + " = "+ oneRow.get(column));
+			//log.info("In processor print column name " + column + " = "+ oneRow.get(column));
 			bcpRowList.add(column);
 			bcpRowList.add(oneRow.get(column));
 		}
 		log.info("processor has come to succeed!");
 		return bcpRowList;
 		
+	}
+	
+	public void close() {
+		System.out.print("liquitdityINformationProcessor bean is destroying...");
 	}
 	
 }
